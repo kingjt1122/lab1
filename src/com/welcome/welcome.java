@@ -600,7 +600,7 @@ public class welcome extends JFrame{
         return aMATRIX;
 	}
 				
-	private static String queryBridgeWords(MatrixDG G, String word1, String word2)//鏌ヨ妗ユ帴璇�
+	static String queryBridgeWords(MatrixDG G, String word1, String word2)//鏌ヨ妗ユ帴璇�
     {
         String s = "";
         int i, i1;

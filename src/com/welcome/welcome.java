@@ -278,9 +278,13 @@ public class welcome extends JFrame{
 		return s;
 	}
 	
-	private static String calcShortestPath(MatrixDG g, String word1, String word2)
+	static String calcShortestPath(MatrixDG g, String word1, String word2)
 	{
 		// in the algorithm, the number 999 means "false"
+		if (word1==word2)
+		{
+			return "0";
+		}
 		for (int i=0;i<g.vlen;i++)
 		{
 			for (int j=0;j<g.vlen;j++)
@@ -294,7 +298,15 @@ public class welcome extends JFrame{
 		String s="";
 		int w1,w2;
 		w1=getposition(word1,g.mVexs);
+		if (w1==-1)
+		{
+			return "word1 not in the text";
+		}
 		w2=getposition(word2,g.mVexs);
+		if (w2==-1)
+		{
+			return "word2 not in the text";
+		}
 		//System.out.print(w1+" "+w2);
 		int d[]=new int[g.vlen];
 		int p[]=new int[g.vlen];
@@ -366,10 +378,13 @@ public class welcome extends JFrame{
 		g.mVexs[w2]=g.mVexs[w2]+"*";
 		path[c+1]=g.mVexs[w1];
 		g.mVexs[w1]=g.mVexs[w1]+" *";
+		int count=0;
 		for (int j=99;j>=0;j--)
 		{
+			//count=count+1;
 			if (path[j]!="" && j!=0)
 			{
+				count=count+1;
 				s=s+path[j]+" -> ";
 				//System.out.print(path[j]+" -> ");
 			}
@@ -379,7 +394,7 @@ public class welcome extends JFrame{
 				//System.out.print(path[j]);
 			}
 		}
-		
+		s=s+" "+count;
 		return s;
 	}
 	
